@@ -3,7 +3,8 @@
 # COMP 163 - Project 1: Character Creator & Chronicles
 # 🎯 Project Overview
 
-Build a text-based RPG character creation and story progression system that demonstrates mastery of functions and file I/O operations.
+Build a text-based RPG character creation and story progression system that demonstrates mastery of functions and file I/O operations. The project is based on a fantasy RPG that takes on elements of the well known anime “Frieren: Beyond Journey’s End” with side elements of its own. It consists of classes: Base, Combatant, Sorcerer, Mischief, Shootaz, Glitchez, and Hybrid. Hybrids, Glitchez, and Shootaz are the strongest classes to be born into in my RPG game. The stats did formulate based on the example provided at the start before I started coding. However, since the Hybrids, Glitchez, and Shootaz classes are the strongest classes they were given stronger stats; the catch is that stronger the class, the higher the rarity to be born into it. Now for the leveling system, I put it into this kind of system: High “stat” = (level x 10), Medium “stat” = (level x 7), and Low “stat” = (level x 3). I don’t think I added anything specifically unique, but when I was making the code for it to work I made another function to make filename a global variable. I did end up using ChatGPT for this project to assist with syntax formatting. The areas that have AI assistance in it are in the functions “def load_character” and “def display_character”. To run the code, you enter your character’s name and what class you want them to be born into. After that, you add what level they are then it calculates what their stats will become. 
+
 
 # Required Functions 
 Complete these functions in project1_starter.py:
