@@ -1,11 +1,10 @@
-"""
 # COMP 163 - Project 1: Character Creator & Saving/Loading
 # Name: [Akhirah Henry]
 # Date: [October 27, 2025]
 
-AI Usage: [Document any AI assistance used]
-Example: AI helped with file I/O error handling logic in save_character function
-"""
+AI Usage: [ChatGPT]
+AI helped with file I/O error handling logic in display_character function and load_character function.
+
 
 def create_character(name, character_class):
     """
