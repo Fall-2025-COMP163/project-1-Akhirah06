@@ -1,7 +1,7 @@
 """
-COMP 163 - Project 1: Character Creator & Saving/Loading
-Name: [Your Name Here]
-Date: [Date]
+# COMP 163 - Project 1: Character Creator & Saving/Loading
+# Name: [Akhirah Henry]
+# Date: [October 27, 2025]
 
 AI Usage: [Document any AI assistance used]
 Example: AI helped with file I/O error handling logic in save_character function
@@ -16,9 +16,19 @@ def create_character(name, character_class):
     char = create_character("Aria", "Mage")
     # Should return: {"name": "Aria", "class": "Mage", "level": 1, "strength": 5, "magic": 15, "health": 80, "gold": 100}
     """
-    # TODO: Implement this function
-    # Remember to use calculate_stats() function for stat calculation
-    pass
+    level = 1  # Starting level 
+    strength, magic, health = calculate_stats(character_class, level)
+    gold = 100  # Starting gold
+    character = {
+        "name": name,
+        "class": character_class,
+        "level": level,
+        "strength": strength,
+        "magic": magic,
+        "health": health,
+        "gold": gold
+    }
+    return character
 
 def calculate_stats(character_class, level):
     """
@@ -26,14 +36,44 @@ def calculate_stats(character_class, level):
     Returns: tuple of (strength, magic, health)
     
     Design your own formulas! Ideas:
-    - Warriors: High strength, low magic, high health
-    - Mages: Low strength, high magic, medium health  
-    - Rogues: Medium strength, medium magic, low health
-    - Clerics: Medium strength, high magic, high health
+    - Combatants: High strength, low magic, high health
+    - Sorcerers: Low strength, high magic, medium health  
+    - Mischiefs: Medium strength, medium magic, low health
+    - Shootaz: Medium strength, high magic, high health
+    - Glitchez: High strength, medium magic, high health
+    - Hybrids: High strength, high magic, high health
     """
-    # TODO: Implement this function
-    # Return a tuple: (strength, magic, health)
-    pass
+    character_class = character_class.title()
+    if character_class == "Combatant":
+        strength = 10 + (level * 10)
+        magic = 2 + (level * 3)
+        health = 100 + (level * 10)
+    elif character_class == "Sorcerer":
+        strength = 4 + (level * 3)
+        magic = 12 + (level * 10)
+        health = 80 + (level * 7)
+    elif character_class == "Mischief":
+        strength = 7 + (level * 7)
+        magic = 7 + (level * 7)
+        health = 70 + (level * 3)
+    elif character_class == "Shootaz":
+        strength = 7 + (level * 7)
+        magic = 12 + (level * 10)
+        health = 100 + (level * 10)
+    elif character_class == "Glitchez":
+        strength = 12 + (level * 10)
+        magic = 7 + (level * 7)
+        health = 100 + (level * 10)
+    elif character_class == "Hybrid":
+        strength = 10 + (level * 10)
+        magic = 10 + (level * 10)
+        health = 100 + (level * 10)
+    else:
+        # Default stats for base class
+        strength = 5
+        magic = 5
+        health = 90
+    return (strength, magic, health)
 
 def save_character(character, filename):
     """
@@ -49,18 +89,38 @@ def save_character(character, filename):
     Health: [health]
     Gold: [gold]
     """
-    # TODO: Implement this function
-    # Remember to handle file errors gracefully
-    pass
+    with open(filename, "w") as character_file:
+        character_file.write("Character Name: " + character["name"])
+        character_file.write("\n")
+        character_file.write("Class: " + character["class"])
+        character_file.write("\n")
+        character_file.write("Level: " + str(character["level"]))
+        character_file.write("\n")
+        character_file.write("Strength: " + str(character["strength"]))
+        character_file.write("\n")
+        character_file.write("Magic: " + str(character["magic"]))
+        character_file.write("\n")
+        character_file.write("Health: " + str(character["health"]))
+        character_file.write("\n")
+        character_file.write("Gold: " + str(character["gold"]))
+        character_file.write("\n")
+    return True
 
 def load_character(filename):
     """
     Loads character from text file
     Returns: character dictionary if successful, None if file not found
     """
-    # TODO: Implement this function
-    # Remember to handle file not found errors
-    pass
+    with open(filename, "r") as character_file:
+        lines = character_file.readlines()
+        character = {}
+        for line in lines:
+            key, values = line.strip().split(": ")
+            key = key.lower().replace("character name", "name")
+            if key in ["level", "strength", "magic", "health", "gold"]:
+                values = int(values)
+            character[key] = values
+    return character
 
 def display_character(character):
     """
@@ -77,8 +137,9 @@ def display_character(character):
     Health: 80
     Gold: 100
     """
-    # TODO: Implement this function
-    pass
+    print("=== CHARACTER SHEET ===")
+    for key, value in character.items():
+        print(f"{key}: {value}")
 
 def level_up(character):
     """
@@ -86,17 +147,28 @@ def level_up(character):
     Modifies the character dictionary directly
     Returns: None
     """
-    # TODO: Implement this function
-    # Remember to recalculate stats for the new level
-    pass
+    character["level"] += 1
+    save_character(character, character["name"])
+    strength, magic, health = calculate_stats(character["class"], character["level"])
+    character["strength"] = strength
+    character["magic"] = magic
+    character["health"] = health
+    save_character(character, filename(character))
+
+def filename(character):
+    filename = character["name"] + ".txt"
+    return filename
 
 # Main program area (optional - for testing your functions)
 if __name__ == "__main__":
     print("=== CHARACTER CREATOR ===")
     print("Test your functions here!")
     
-    # Example usage:
-    # char = create_character("TestHero", "Warrior")
-    # display_character(char)
-    # save_character(char, "my_character.txt")
-    # loaded = load_character("my_character.txt")
+    char = create_character("Asta", "Glitchez")
+    char["level"] = int(input())
+    char["strength"], char["magic"], char["health"] = calculate_stats("Glitchez", char["level"])
+    save_character(char, filename(char))
+    char = load_character(filename(char))
+    display_character(char)
+    # Should be: {name: Asta, class: Glitchez, level: 20, strength: 152, magic: 147, health: 300, gold: 100}
+   

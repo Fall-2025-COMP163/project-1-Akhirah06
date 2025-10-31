@@ -1,0 +1,7 @@
+Character Name: Asta
+Class: Glitchez
+Level: 20
+Strength: 72
+Magic: 47
+Health: 300
+Gold: 100
