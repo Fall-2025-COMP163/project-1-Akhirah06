@@ -16,7 +16,19 @@ def create_character(name, character_class):
     char = create_character("Aria", "Mage")
     # Should return: {"name": "Aria", "class": "Mage", "level": 1, "strength": 5, "magic": 15, "health": 80, "gold": 100}
     """
-    level = 1  # Starting level 
+    level = 1  # Starting level
+    if character_class == "Combatant":
+        return {"strength": 10, "magic": 2, "health": 100}
+    elif character_class == "Sorcerer":
+        return {"strength": 4, "magic": 12, "health": 80}
+    elif character_class == "Mischief":
+        return {"strength": 7, "magic": 7, "health": 70}
+    elif character_class == "Shootaz":
+        return {"strength": 7, "magic": 12, "health": 100}
+    elif character_class == "Glitchez":
+        return {"strength": 12, "magic": 7, "health": 100}
+    elif character_class == "Hybrid":
+        return {"strength": 10, "magic": 10, "health": 100}
     strength, magic, health = calculate_stats(character_class, level)
     gold = 100  # Starting gold
     character = {
@@ -44,30 +56,31 @@ def calculate_stats(character_class, level):
     - Hybrids: High strength, high magic, high health
     """
     character_class = character_class.title()
+    level = 1   # Starting level
     if character_class == "Combatant":
-        strength = 10 + (level * 10)
-        magic = 2 + (level * 3)
-        health = 100 + (level * 10)
+        strength = (level * 10)
+        magic = (level * 3)
+        health = (level * 10)
     elif character_class == "Sorcerer":
-        strength = 4 + (level * 3)
-        magic = 12 + (level * 10)
-        health = 80 + (level * 7)
+        strength = (level * 3)
+        magic = (level * 10)
+        health = (level * 7)
     elif character_class == "Mischief":
-        strength = 7 + (level * 7)
-        magic = 7 + (level * 7)
-        health = 70 + (level * 3)
+        strength = (level * 7)
+        magic = (level * 7)
+        health = (level * 3)
     elif character_class == "Shootaz":
-        strength = 7 + (level * 7)
-        magic = 12 + (level * 10)
-        health = 100 + (level * 10)
+        strength = (level * 7)
+        magic = (level * 10)
+        health = (level * 10)
     elif character_class == "Glitchez":
-        strength = 12 + (level * 10)
-        magic = 7 + (level * 7)
-        health = 100 + (level * 10)
+        strength = (level * 10)
+        magic = (level * 7)
+        health = (level * 10)
     elif character_class == "Hybrid":
-        strength = 10 + (level * 10)
-        magic = 10 + (level * 10)
-        health = 100 + (level * 10)
+        strength = (level * 10)
+        magic = (level * 10)
+        health = (level * 10)
     else:
         # Default stats for base class
         strength = 5
