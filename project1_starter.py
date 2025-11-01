@@ -18,17 +18,17 @@ def create_character(name, character_class):
     """
     level = 1  # Starting level
     if character_class == "Combatant":
-        return {"strength": 10, "magic": 2, "health": 100}
+        return {"strength": 10, "magic": 2, "health": 90}
     elif character_class == "Sorcerer":
         return {"strength": 4, "magic": 12, "health": 80}
     elif character_class == "Mischief":
         return {"strength": 7, "magic": 7, "health": 70}
     elif character_class == "Shootaz":
-        return {"strength": 7, "magic": 12, "health": 100}
+        return {"strength": 11, "magic": 10, "health": 100}
     elif character_class == "Glitchez":
-        return {"strength": 12, "magic": 7, "health": 100}
+        return {"strength": 12, "magic": 11, "health": 110}
     elif character_class == "Hybrid":
-        return {"strength": 10, "magic": 10, "health": 100}
+        return {"strength": 13, "magic": 13, "health": 120}
     strength, magic, health = calculate_stats(character_class, level)
     gold = 100  # Starting gold
     character = {
